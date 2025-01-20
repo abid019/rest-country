@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from '../components/Card'
-import Filters from '../components/filters'
+import Filters from '../components/Filters'
 
 const Home = ({countries,mode,setRegion,setSearchVal}) => {
   
