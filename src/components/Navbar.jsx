@@ -1,7 +1,5 @@
-import useThemeSwitcher from '../hooks/useThemeSwitcher';
 import { IoMoonOutline } from "react-icons/io5";
 import { IoMoonSharp } from "react-icons/io5";
-import React, { useState } from 'react'
 const Navbar = ({mode,toggleButton}) => {  
   return (
     <div className={` ${mode === 'dark' ? 'bg-[#1f2937]' : 'bg-[#FFFFFF]'} h-[70px] mt-0 sticky top-0  `}>

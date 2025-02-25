@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { IoSearch } from "react-icons/io5";
 
 const Filters = ({mode,setRegion,setSearchVal}) => {
@@ -14,7 +13,8 @@ const Filters = ({mode,setRegion,setSearchVal}) => {
                 onChange={(e)=> setSearchVal(e.target.value)}
             />
         </div>
-             
+                            
+
         <div className='flex flex-col items-center'>            
             <select 
                 name='region' 

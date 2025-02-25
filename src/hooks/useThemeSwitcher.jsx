@@ -1,7 +1,3 @@
-import React, { useState } from 'react'
-import { IoMoonOutline } from "react-icons/io5";
-import { IoMoonSharp } from "react-icons/io5";
-
 const useThemeSwitcher = (mode,setMode) => {
     // const [mode,setMode] = useState('light');
     if(mode === 'dark'){
