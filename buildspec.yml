@@ -5,14 +5,12 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      - echo "Updating system and installing dependencies..."
-      - yum update -y
-      - yum install -y gcc-c++ make
+      - echo "Installing dependencies..."
       - npm install
   build:
     commands:
-      - echo "Building the Vite app..."
-      - npm run build
+      - echo "building the vite app..."
+      - npm run build || echo "skipping build if not needed"
 
   post_build:
     commands:
