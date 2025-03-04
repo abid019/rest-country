@@ -5,7 +5,7 @@ import useThemeSwitcher from './hooks/useThemeSwitcher';
 import Home from './pages/Home';
 import { Routes,Route } from 'react-router-dom';
 import Detail from './pages/Detail';
-import { fetchData } from './services/api';
+import { fetchData } from './services/Api';
 
 let api_url = import.meta.env.VITE_API_URL
 function App() {
