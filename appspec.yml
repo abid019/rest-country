@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 
 files:
-  - source: /
+  - source: /dist
     destination: /var/www/country  # Adjust if you want a different location
 
 hooks:
