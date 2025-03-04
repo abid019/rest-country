@@ -3,25 +3,39 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 18  # Ensure Amazon Linux 2 EC2 also uses Node.js 18
+      nodejs: 18
     commands:
       - echo "Installing dependencies..."
       - npm ci
 
   build:
     commands:
+      - echo "Creating .env file with VITE_API_URL..."
+
+      # Dynamically generate .env file from CodeBuild environment variable
+      - echo "VITE_API_URL=${VITE_API_URL}" > .env
+
+      # Log .env file (optional, remove in production)
+      - echo "Generated .env file:"
+      - cat .env
+
       - echo "Building the React App using Vite..."
       - npm run build
 
   post_build:
     commands:
       - echo "Preparing deployment artifacts..."
-      - mkdir -p deploy
-      - cp -r dist/* deploy/
+      - if [ -d "dist" ]; then
+          mkdir -p deploy;
+          cp -r dist/* deploy/;
+        else
+          echo "Error: dist folder not found. Build likely failed.";
+          exit 1;
+        fi
       - echo "Build process complete."
 
 artifacts:
   files:
     - appspec.yml
     - scripts/**
-    - deploy/**  # Upload the built files for CodeDeploy to push to EC2
+    - deploy/**
