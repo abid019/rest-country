@@ -11,16 +11,13 @@ phases:
   build:
     commands:
       - echo "Creating .env file with VITE_API_URL..."
+      - echo "VITE_API_URL=https://restcountries.com/v3.1" > .env  # <-- hardcoded for now to test
 
-      # Dynamically generate .env file from CodeBuild environment variable
-      - echo "VITE_API_URL=${VITE_API_URL}" > .env
-
-      # Log .env file (optional, remove in production)
-      - echo "Generated .env file:"
+      - echo ".env file content:"
       - cat .env
 
       - echo "Building the React App using Vite..."
-      - npm run build
+      - npm run build || { echo "Build failed! Check logs above." ; exit 1; }
 
   post_build:
     commands:
@@ -30,7 +27,7 @@ phases:
           mkdir -p deploy
           cp -r dist/* deploy/
         else
-          echo "Error: dist folder not found. Build likely failed."
+          echo "Error: dist folder not found. Build failed or dist was not created."
           exit 1
         fi
       - echo "Build process complete."
