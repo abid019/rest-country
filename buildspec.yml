@@ -22,10 +22,9 @@ phases:
   post_build:
     commands:
       - echo "Preparing deployment artifacts..."
-      - |
+       - |
         if [ -d "dist" ]; then
-          mkdir -p deploy
-          cp -r dist/* deploy/
+          cp -r dist/* .
         else
           echo "Error: dist folder not found. Build failed or dist was not created."
           exit 1
@@ -36,4 +35,4 @@ artifacts:
   files:
     - appspec.yml
     - scripts/**
-    - deploy/**
+    - dist/**    
