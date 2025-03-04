@@ -22,7 +22,7 @@ phases:
   post_build:
     commands:
       - echo "Preparing deployment artifacts..."
-       - |
+      - |
         if [ -d "dist" ]; then
           cp -r dist/* .
         else
@@ -35,4 +35,4 @@ artifacts:
   files:
     - appspec.yml
     - scripts/**
-    - dist/**    
+    - dist/**
