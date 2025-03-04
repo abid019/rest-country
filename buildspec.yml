@@ -25,12 +25,13 @@ phases:
   post_build:
     commands:
       - echo "Preparing deployment artifacts..."
-      - if [ -d "dist" ]; then
-          mkdir -p deploy;
-          cp -r dist/* deploy/;
+      - |
+        if [ -d "dist" ]; then
+          mkdir -p deploy
+          cp -r dist/* deploy/
         else
-          echo "Error: dist folder not found. Build likely failed.";
-          exit 1;
+          echo "Error: dist folder not found. Build likely failed."
+          exit 1
         fi
       - echo "Build process complete."
 
