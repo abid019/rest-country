@@ -3,20 +3,25 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 18
+      nodejs: 18  # Ensure Amazon Linux 2 EC2 also uses Node.js 18
     commands:
       - echo "Installing dependencies..."
-      - npm install
+      - npm ci
+
   build:
     commands:
-      - echo "building the vite app..."
-      - npm run build || echo "skipping build if not needed"
+      - echo "Building the React App using Vite..."
+      - npm run build
 
   post_build:
     commands:
-      - echo "Build completed successfully"
+      - echo "Preparing deployment artifacts..."
+      - mkdir -p deploy
+      - cp -r dist/* deploy/
+      - echo "Build process complete."
 
 artifacts:
   files:
-    - '**/*'
-  base-directory: dist
+    - appspec.yml
+    - scripts/**
+    - deploy/**  # Upload the built files for CodeDeploy to push to EC2
