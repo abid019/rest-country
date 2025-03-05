@@ -3,7 +3,8 @@ os: linux
 
 files:
   - source: /dist
-    destination: /var/www/country  # Adjust if you want a different location
+    destination: /var/www/country/deploy
+    overwrite: true
 
 hooks:
   ApplicationStop:
